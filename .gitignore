@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+.env
+
+# Node / React
+node_modules/
+build/
+.eslintcache
+
+# Project Specific (Crucial for Docker)
+backend/data/          # Do NOT push your SQLite DB or FAISS index
+.DS_Store
