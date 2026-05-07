@@ -2,6 +2,10 @@ from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from app.services.pdf_parser import extract_text_from_pdf # <-- Import your new service
 from app.services.nlp_engine import generate_vector
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from app.db.models import Base, CVProfile
+from app.services.vector_store import save_vector_to_faiss
 app = FastAPI(title="TalentScan-AUF API")
 
 app.add_middleware(
@@ -55,3 +59,10 @@ async def search_experts(job_description: str):
     # Phase 2: Logic for Sentence-Transformers & FAISS goes here
     return {"query": job_description, "top_matches": []}
 
+# SQLite setup
+DATABASE_URL = "sqlite:///./data/talentscan.db"
+engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+# Create the tables if they don't exist
+Base.metadata.create_all(bind=engine)
