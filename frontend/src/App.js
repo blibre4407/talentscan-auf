@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import DashboardLayout from './components/DashboardLayout';
+import UploadView from './components/UploadView';
+import SearchView from './components/SearchView';
+import ProfileView from './components/ProfileView';
+
+// Wrapper component to handle the Profile View routing
+import { useNavigate } from 'react-router-dom';
+const SearchViewWithNavigation = () => {
+  const navigate = useNavigate();
+  return <SearchView onViewProfile={(id) => navigate(`/profile/${id}`)} />;
+};
+
+const ProfileViewWithNavigation = () => {
+  const navigate = useNavigate();
+  // Extract the ID from the URL path manually for simplicity, or use useParams
+  const id = window.location.pathname.split('/').pop();
+  return <ProfileView cvId={id} onBack={() => navigate('/search')} />;
+};
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <DashboardLayout>
+        <Routes>
+          <Route path="/" element={<UploadView />} />
+          <Route path="/search" element={<SearchViewWithNavigation />} />
+          <Route path="/profile/:id" element={<ProfileViewWithNavigation />} />
+        </Routes>
+      </DashboardLayout>
+    </Router>
   );
 }
 
