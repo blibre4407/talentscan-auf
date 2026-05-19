@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Text
+from sqlalchemy import Column, Integer, String, Text, Boolean
 from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
@@ -8,5 +8,17 @@ class CVProfile(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     filename = Column(String(255))
-    content = Column(Text)  # The raw text from pdfplumber
-    vector_id = Column(Integer) # The index position in the FAISS file
+    full_name = Column(String(255), index=True, nullable=True)
+    hub = Column(String(100), index=True) 
+    is_manual = Column(Boolean, default=False)
+    
+    # Contact & Structured Data (for manual entries)
+    email = Column(String(255), nullable=True)
+    phone = Column(String(50), nullable=True)
+    skills = Column(Text, nullable=True)
+    experience = Column(Text, nullable=True)
+    education = Column(Text, nullable=True)
+    
+    content = Column(Text)  # The raw searchable text
+    vector_id = Column(Integer) 
+    file_path = Column(String(500)) # Path to the stored/generated PDF

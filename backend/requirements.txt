@@ -5,3 +5,4 @@ pdfplumber
 sentence-transformers
 faiss-cpu
 sqlalchemy
+fpdf2>=2.7.9
