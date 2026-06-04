@@ -13,3 +13,4 @@ build/
 # Project Specific (Crucial for Docker)
 backend/data/          # Do NOT push your SQLite DB or FAISS index
 .DS_Store
+backend/data/cv_storage/4_CV_10_Michael_Thompson.pdf
