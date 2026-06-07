@@ -1,0 +1,25 @@
+{
+  "scenarios": [
+    {
+      "label": "Frontend developer profile",
+      "job_description": "We need a frontend engineer with strong React skills, dashboard experience, and recruiter-facing UX work.",
+      "expected_cv_ids": [1],
+      "hub_filter": "All Hubs",
+      "top_k": 3
+    },
+    {
+      "label": "Operations and regional coordination",
+      "job_description": "Candidate should manage international operations, stakeholder coordination, and multilingual communication across regional hubs.",
+      "expected_cv_ids": [2],
+      "hub_filter": "All Hubs",
+      "top_k": 3
+    },
+    {
+      "label": "Data and analytics support",
+      "job_description": "Looking for someone with reporting, analytics, and data workflow support experience.",
+      "expected_cv_ids": [3],
+      "hub_filter": "All Hubs",
+      "top_k": 3
+    }
+  ]
+}

@@ -18,6 +18,5 @@ async def extract_text_from_pdf(file_bytes: bytes) -> str:
         return ""
 
     # Clean up the output by removing excessive newlines and spaces
-    clean_text = " ".join(text.split())
-    return clean_text
+    return text.strip()
     

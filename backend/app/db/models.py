@@ -22,3 +22,8 @@ class CVProfile(Base):
     content = Column(Text)  # The raw searchable text
     vector_id = Column(Integer) 
     file_path = Column(String(500)) # Path to the stored/generated PDF
+    parser_source = Column(String(50), nullable=True, default="manual")
+    parser_confidence = Column(Integer, nullable=True, default=0)
+    parser_missing_sections = Column(Text, nullable=True)
+    profile_status = Column(String(50), nullable=True, default="new")
+    recruiter_notes = Column(Text, nullable=True, default="")
